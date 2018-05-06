@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.rmd.bms</groupId>
+  <artifactId>rmd_bms_parent</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <spring.version>3.2.4.RELEASE</spring.version>
+    <zookeeper.version>3.4.6</zookeeper.version>
+    <dubbo.version>2.5.3</dubbo.version>
+    <zkclient.version>0.1</zkclient.version>
+  </properties>
+
+
+  <modules>
+    <module>rmd_bms_api</module>
+    <module>rmd_bms_provider</module>
+  	<module>rmd_bms_web</module>
+    <module>rmd_bms_auth</module>
+    <module>rmd_bms_monitor</module>
+  </modules>
+  <distributionManagement>  
+        <repository>  
+            <id>releases</id>  
+            <name>Nexus Release Repository</name>  
+            <url>http://192.168.0.19:8081/nexus/content/repositories/releases/</url>  
+        </repository>  
+        <snapshotRepository>  
+            <id>snapshots</id>  
+            <name>Nexus Snapshot Repository</name>  
+            <url>http://192.168.0.19:8081/nexus/content/repositories/snapshots/</url>  
+        </snapshotRepository>  
+    </distributionManagement>  
+</project>

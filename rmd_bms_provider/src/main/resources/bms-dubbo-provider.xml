@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://code.alibabatech.com/schema/dubbo
+	http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+	<!-- 提供方应用信息，用于计算依赖关系 -->
+	<dubbo:application name="rmd_bms_provider" />
+	
+	<!-- 使用zookeeper注册中心暴露服务地址 -->
+	<dubbo:registry address="${dubbo.registry.address}"/>
+
+	<!-- 用dubbo协议在20880端口暴露服务 -->
+	<dubbo:protocol name="${dubbo.protocol.name}" port="${dubbo.protocol.port}" />
+	
+	<!-- 声明需要暴露的服务接口 -->
+	<dubbo:service interface="com.rmd.bms.service.DepartmentService" ref="departmentService" retries="0" timeout="40000"/>
+	<dubbo:service interface="com.rmd.bms.service.UserService" ref="userService" />
+	<dubbo:service interface="com.rmd.bms.service.RoleService" ref="roleService" />
+	<dubbo:service interface="com.rmd.bms.service.WebApplicationService" ref="webApplicationService"/>
+	<dubbo:service interface="com.rmd.bms.service.ApplicationMenuService" ref="applicationMenuService"/>
+	<dubbo:service interface="com.rmd.bms.service.OperationLogService" ref="operationLogService" />
+	<dubbo:service interface="com.rmd.bms.service.MenuOperationService" ref="menuOperationService" />
+	<dubbo:service interface="com.rmd.bms.service.AreaDeliveryService" ref="areaDeliveryService" />
+	<dubbo:service interface="com.rmd.bms.service.AreaService" ref="areaService" timeout="40000"/>
+	<dubbo:service interface="com.rmd.bms.service.BmsApiService" ref="bmsApiService" retries="0" timeout="40000"/>
+	<dubbo:service interface="com.rmd.bms.service.MQSupportService" ref="MQSupportService"/>
+	
+</beans>

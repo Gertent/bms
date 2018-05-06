@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rmd.bms.dao.OperationLogMapper">
+  <resultMap id="BaseResultMap" type="com.rmd.bms.entity.OperationLog">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="operation" jdbcType="VARCHAR" property="operation" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="parameter" jdbcType="VARCHAR" property="parameter" />
+    <result column="userid" jdbcType="INTEGER" property="userid" />
+    <result column="operationtime" jdbcType="TIMESTAMP" property="operationtime" />
+    <result column="ip_address" jdbcType="VARCHAR" property="ipAddress" />
+    <result column="browser_type" jdbcType="VARCHAR" property="browserType" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, operation, url, parameter, userid, operationtime, ip_address, browser_type
+  </sql>
+  <select id="selectByExample" parameterType="com.rmd.bms.entity.OperationLogExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from t_operation_log
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_operation_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_operation_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.rmd.bms.entity.OperationLogExample">
+    delete from t_operation_log
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.rmd.bms.entity.OperationLog">
+    insert into t_operation_log (id, operation, url, 
+      parameter, userid, operationtime, 
+      ip_address, browser_type)
+    values (#{id,jdbcType=INTEGER}, #{operation,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
+      #{parameter,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}, #{operationtime,jdbcType=TIMESTAMP}, 
+      #{ipAddress,jdbcType=VARCHAR}, #{browserType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.rmd.bms.entity.OperationLog">
+    insert into t_operation_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="operation != null">
+        operation,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+      <if test="parameter != null">
+        parameter,
+      </if>
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="operationtime != null">
+        operationtime,
+      </if>
+      <if test="ipAddress != null">
+        ip_address,
+      </if>
+      <if test="browserType != null">
+        browser_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="operation != null">
+        #{operation,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="parameter != null">
+        #{parameter,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="operationtime != null">
+        #{operationtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ipAddress != null">
+        #{ipAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="browserType != null">
+        #{browserType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.rmd.bms.entity.OperationLogExample" resultType="java.lang.Long">
+    select count(*) from t_operation_log
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_operation_log
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.operation != null">
+        operation = #{record.operation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.url != null">
+        url = #{record.url,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parameter != null">
+        parameter = #{record.parameter,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userid != null">
+        userid = #{record.userid,jdbcType=INTEGER},
+      </if>
+      <if test="record.operationtime != null">
+        operationtime = #{record.operationtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.ipAddress != null">
+        ip_address = #{record.ipAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.browserType != null">
+        browser_type = #{record.browserType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_operation_log
+    set id = #{record.id,jdbcType=INTEGER},
+      operation = #{record.operation,jdbcType=VARCHAR},
+      url = #{record.url,jdbcType=VARCHAR},
+      parameter = #{record.parameter,jdbcType=VARCHAR},
+      userid = #{record.userid,jdbcType=INTEGER},
+      operationtime = #{record.operationtime,jdbcType=TIMESTAMP},
+      ip_address = #{record.ipAddress,jdbcType=VARCHAR},
+      browser_type = #{record.browserType,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rmd.bms.entity.OperationLog">
+    update t_operation_log
+    <set>
+      <if test="operation != null">
+        operation = #{operation,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="parameter != null">
+        parameter = #{parameter,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="operationtime != null">
+        operationtime = #{operationtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ipAddress != null">
+        ip_address = #{ipAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="browserType != null">
+        browser_type = #{browserType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rmd.bms.entity.OperationLog">
+    update t_operation_log
+    set operation = #{operation,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      parameter = #{parameter,jdbcType=VARCHAR},
+      userid = #{userid,jdbcType=INTEGER},
+      operationtime = #{operationtime,jdbcType=TIMESTAMP},
+      ip_address = #{ipAddress,jdbcType=VARCHAR},
+      browser_type = #{browserType,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByAllList" resultMap="BaseResultMap" parameterType="java.util.Map">
+  SELECT 
+	t1.id AS id,
+	t1.operation AS operation,
+	t1.url AS url,
+	t1.parameter AS parameter,
+	t1.operationtime AS operationtime,
+	t1.ip_address AS ipAddress,
+	t1.browser_type browserType,
+	t2.loginname AS loginname
+	FROM t_operation_log t1
+	LEFT JOIN t_user t2 ON t1.userid = t2.id
+	WHERE 1=1
+    <if test="operationtime != null">
+       AND t1.operationtime = #{operationtime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="operation != null">
+       AND t1.operation = #{operation,jdbcType=VARCHAR}
+    </if>
+    <if test="loginname != null">
+       AND t2.loginname = #{loginname,jdbcType=VARCHAR}
+    </if>
+  </select>
+</mapper>

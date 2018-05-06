@@ -1,0 +1,103 @@
+@CHARSET "UTF-8";
+/* ul li css*/
+.layerFormUl{
+	padding-top: 20px;
+}
+.layerFormUl .inBox li input,
+.layerFormUl .inBox li  textarea,
+.layerFormUl .inBox li  select{
+	width:60%;
+	display:block;
+	float:left;
+	border:1px #dcdcdc solid;
+	padding-left:10px;
+}
+.layerFormUl .inBox li input,
+.layerFormUl .inBox li  select{
+	height:30px;
+	line-height:30px;
+}
+.layerFormUl .inBox li  select{
+	width:62%;
+}
+.layerFormUl .inBox li{
+	clear:both;
+	padding: 10px 0;
+}
+.layerFormUl .inBox li label{
+	width:25%;
+	margin-right:2%;
+	display:block;
+	text-align:right;
+	line-height:30px;
+	float: left;
+}
+.layerFormUl .inBox li label i{
+	color:red;
+}
+.layerFormUl .inBox li  textarea{
+    height: 100px;
+}
+
+.layerFormUl .inBox li .sizeBox{
+	width: 60%;
+    background: #f1f1f1;
+    padding-left: 2%;
+}
+.layerFormUl .inBox li .sizeBox label{
+	width: 30px;
+}
+.layerFormUl .inBox li .sizeBox input{
+	width:100px;
+	display:block;
+	float:left;
+	border:1px #dcdcdc solid;
+	padding-left:10px;
+}
+
+/*  table css */
+.layerForm{
+	padding: 20px 0 0 0;
+}
+.layerForm table{
+	width: 100%;
+}
+.layerForm table tr td{
+	padding:10px 0;
+}
+.layerForm table tr>td:first-child{
+	width:25%;
+	padding-right:2%;
+	text-align:right;
+	line-height:30px;
+}
+.layerForm table tr>td:first-child span{
+	color:red;
+	padding-left:10px;
+}
+.layerForm table tr>td:nth-child(2){
+	width:70%;
+}
+.layerForm table tr>td:nth-child(2) input,
+.layerForm table tr>td:nth-child(2) textarea,
+.layerForm table tr>td:nth-child(2) select{
+	width:80%;
+	border: 1px #dcdcdc solid;
+    padding-left: 10px;
+}
+.layerForm table tr>td:nth-child(2) input,
+.layerForm table tr>td:nth-child(2) select{
+    height: 30px;
+    line-height: 30px;
+}
+.layerForm table tr>td:nth-child(2) select{
+	width: 82%;
+}
+.layerForm table tr>td:nth-child(2) textarea{
+    height: 100px;
+    line-height:26px;
+}
+.layerForm .btnG{
+	display:block;
+	margin:30px auto;
+}

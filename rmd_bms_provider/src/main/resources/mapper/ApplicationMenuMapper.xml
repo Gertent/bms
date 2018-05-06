@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rmd.bms.dao.ApplicationMenuMapper">
+  <resultMap id="BaseResultMap" type="com.rmd.bms.entity.ApplicationMenu">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="menu_code" jdbcType="VARCHAR" property="menuCode" />
+    <result column="menu_name" jdbcType="VARCHAR" property="menuName" />
+    <result column="parentid" jdbcType="INTEGER" property="parentid" />
+    <result column="level" jdbcType="INTEGER" property="level" />
+    <result column="menu_url" jdbcType="VARCHAR" property="menuUrl" />
+    <result column="system_id" jdbcType="INTEGER" property="systemId" />
+    <result column="sort_num" jdbcType="INTEGER" property="sortNum" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="note" jdbcType="VARCHAR" property="note" />
+    <result column="createuser" jdbcType="INTEGER" property="createuser" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="updateuser" jdbcType="INTEGER" property="updateuser" />
+    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="icourl" jdbcType="VARCHAR" property="icourl" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, menu_code, menu_name, parentid, level, menu_url, system_id, sort_num, status, 
+    note, createuser, createtime, updateuser, updatetime,icourl
+  </sql>
+  <select id="selectByExample" parameterType="com.rmd.bms.entity.ApplicationMenuExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from t_application_menu
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_application_menu
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_application_menu
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.rmd.bms.entity.ApplicationMenuExample">
+    delete from t_application_menu
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.rmd.bms.entity.ApplicationMenu">
+    insert into t_application_menu (id, menu_code, menu_name, 
+      parentid, level, menu_url, 
+      system_id, sort_num, status, 
+      note, createuser, createtime, 
+      updateuser, updatetime)
+    values (#{id,jdbcType=INTEGER}, #{menuCode,jdbcType=VARCHAR}, #{menuName,jdbcType=VARCHAR}, 
+      #{parentid,jdbcType=INTEGER}, #{level,jdbcType=INTEGER}, #{menuUrl,jdbcType=VARCHAR}, 
+      #{systemId,jdbcType=INTEGER}, #{sortNum,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{note,jdbcType=VARCHAR}, #{createuser,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{updateuser,jdbcType=INTEGER}, #{updatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.rmd.bms.entity.ApplicationMenu">
+    insert into t_application_menu
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="menuCode != null">
+        menu_code,
+      </if>
+      <if test="menuName != null">
+        menu_name,
+      </if>
+      <if test="parentid != null">
+        parentid,
+      </if>
+      <if test="level != null">
+        level,
+      </if>
+      <if test="menuUrl != null">
+        menu_url,
+      </if>
+      <if test="systemId != null">
+        system_id,
+      </if>
+      <if test="sortNum != null">
+        sort_num,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="note != null">
+        note,
+      </if>
+      <if test="createuser != null">
+        createuser,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="updateuser != null">
+        updateuser,
+      </if>
+      <if test="updatetime != null">
+        updatetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="menuCode != null">
+        #{menuCode,jdbcType=VARCHAR},
+      </if>
+      <if test="menuName != null">
+        #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null">
+        #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="menuUrl != null">
+        #{menuUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="systemId != null">
+        #{systemId,jdbcType=INTEGER},
+      </if>
+      <if test="sortNum != null">
+        #{sortNum,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="note != null">
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="createuser != null">
+        #{createuser,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateuser != null">
+        #{updateuser,jdbcType=INTEGER},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.rmd.bms.entity.ApplicationMenuExample" resultType="java.lang.Long">
+    select count(*) from t_application_menu
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_application_menu
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.menuCode != null">
+        menu_code = #{record.menuCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.menuName != null">
+        menu_name = #{record.menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parentid != null">
+        parentid = #{record.parentid,jdbcType=INTEGER},
+      </if>
+      <if test="record.level != null">
+        level = #{record.level,jdbcType=INTEGER},
+      </if>
+      <if test="record.menuUrl != null">
+        menu_url = #{record.menuUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.systemId != null">
+        system_id = #{record.systemId,jdbcType=INTEGER},
+      </if>
+      <if test="record.sortNum != null">
+        sort_num = #{record.sortNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.note != null">
+        note = #{record.note,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createuser != null">
+        createuser = #{record.createuser,jdbcType=INTEGER},
+      </if>
+      <if test="record.createtime != null">
+        createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateuser != null">
+        updateuser = #{record.updateuser,jdbcType=INTEGER},
+      </if>
+      <if test="record.updatetime != null">
+        updatetime = #{record.updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_application_menu
+    set id = #{record.id,jdbcType=INTEGER},
+      menu_code = #{record.menuCode,jdbcType=VARCHAR},
+      menu_name = #{record.menuName,jdbcType=VARCHAR},
+      parentid = #{record.parentid,jdbcType=INTEGER},
+      level = #{record.level,jdbcType=INTEGER},
+      menu_url = #{record.menuUrl,jdbcType=VARCHAR},
+      system_id = #{record.systemId,jdbcType=INTEGER},
+      sort_num = #{record.sortNum,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=INTEGER},
+      note = #{record.note,jdbcType=VARCHAR},
+      createuser = #{record.createuser,jdbcType=INTEGER},
+      createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      updateuser = #{record.updateuser,jdbcType=INTEGER},
+      updatetime = #{record.updatetime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rmd.bms.entity.ApplicationMenu">
+    update t_application_menu
+    <set>
+      <if test="menuCode != null">
+        menu_code = #{menuCode,jdbcType=VARCHAR},
+      </if>
+      <if test="menuName != null">
+        menu_name = #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null">
+        parentid = #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="level != null">
+        level = #{level,jdbcType=INTEGER},
+      </if>
+      <if test="menuUrl != null">
+        menu_url = #{menuUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="systemId != null">
+        system_id = #{systemId,jdbcType=INTEGER},
+      </if>
+      <if test="sortNum != null">
+        sort_num = #{sortNum,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="note != null">
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="createuser != null">
+        createuser = #{createuser,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateuser != null">
+        updateuser = #{updateuser,jdbcType=INTEGER},
+      </if>
+      <if test="updatetime != null">
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rmd.bms.entity.ApplicationMenu">
+    update t_application_menu
+    set menu_code = #{menuCode,jdbcType=VARCHAR},
+      menu_name = #{menuName,jdbcType=VARCHAR},
+      parentid = #{parentid,jdbcType=INTEGER},
+      level = #{level,jdbcType=INTEGER},
+      menu_url = #{menuUrl,jdbcType=VARCHAR},
+      system_id = #{systemId,jdbcType=INTEGER},
+      sort_num = #{sortNum,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      note = #{note,jdbcType=VARCHAR},
+      createuser = #{createuser,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      updateuser = #{updateuser,jdbcType=INTEGER},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+    <!-- 获取菜单list -->
+  <select id="selectMenuInfoListById" parameterType="java.lang.Integer" resultType="com.rmd.bms.entity.ApplicationMenu">
+    select 
+	    t1.id AS id,
+		t1.menu_name AS menuName,t1.menu_code AS menuCode,
+		t1.parentid,t1.level,t1.menu_url AS menuUrl,
+		t1.system_id AS systemId,t1.status AS status,
+		t1.note,t1.createuser,t1.createtime,
+		t1.updateuser,t1.updatetime
+    FROM t_application_menu t1
+    where 1 = 1 and status = 1 
+    <if test="_parameter != null and _parameter != ''">
+    	and parentid = #{parentid,jdbcType=INTEGER}
+    </if> 
+    order by id
+  </select>
+  <!-- 根据角色id获取菜单 -->
+  <select id="selectMenuInfoListByRoleid" parameterType="java.lang.Integer" resultType="com.rmd.bms.entity.ApplicationMenu">
+    SELECT 
+	    t1.id AS id,
+		t1.menu_name AS menuName,t1.menu_code AS menuCode,
+		t1.parentid,t1.level,t1.menu_url AS menuUrl,
+		t1.system_id AS systemId,t1.status AS status,
+		t1.note,t1.createuser,t1.createtime,
+		t1.updateuser,t1.updatetime
+    FROM t_application_menu t1
+    LEFT JOIN t_role_operation t2 ON t1.id=t2.menu_id
+    LEFT JOIN t_role t3 ON t2.role_id = t3.id
+    where 1 = 1 and t1.status = 1 
+    <if test="_parameter != null and _parameter != ''">
+    	and t3.id = #{roleId,jdbcType=INTEGER}
+    </if> 
+  </select>
+  <select id="selectMenuInfoList" resultType="com.rmd.bms.entity.ApplicationMenu">
+		SELECT
+		distinct 
+		t1.id AS id,
+		t1.menu_name AS menuName,t1.menu_code AS menuCode,
+		t1.parentid,t1.level,t1.menu_url AS menuUrl,
+		t1.system_id AS
+		systemId,t1.status AS status,
+		t1.note,t1.createuser,t1.createtime,
+		t1.updateuser,t1.updatetime,t1.icourl
+		from t_user_role ur
+		JOIN t_role r on ur.role_id = r.id
+		JOIN t_role_operation ro on r.id = ro.role_id
+		JOIN t_application_menu t1 on ro.menu_id = t1.id
+		where ur.user_id = #{userId,jdbcType=INTEGER} 
+		and r.system_id = #{systemId,jdbcType=INTEGER}
+		and operation_id is null
+		and r.status = 1
+	    order by sort_num
+  </select>
+  <select id="selectByAll" resultType="com.rmd.bms.entity.ApplicationMenu" parameterType="com.rmd.bms.entity.ApplicationMenu">
+	  SELECT 
+	      id AS id,
+	      menu_code AS menuCode,
+	      menu_name AS menuName,
+	      parentid AS parentid,
+	      level AS level,
+	      menu_url AS menuUrl,
+	      system_id AS systemId
+	FROM t_application_menu
+	WHERE 1=1
+	<if test="menuCode">
+		AND menu_code = #{menuCode,jdbcType=VARCHAR}
+	</if>
+	<if test="menuName">
+		AND menu_name = #{menuName,jdbcType=VARCHAR}
+	</if>
+	<if test="systemId">
+		AND system_id = #{systemId,jdbcType=INTEGER}
+	</if>
+  </select>
+</mapper>

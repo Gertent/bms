@@ -1,0 +1,12 @@
+@charset "utf-8";
+/* CSS Document */
+html,body,div,span,h1,h2,h3,h4,h5,h6,p,pre,a,code,em,img,small,strong,sub,sup,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label{padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;}
+a{color:#007bc4/*#424242*/; text-decoration:none;}
+a:hover{text-decoration:underline}
+ol,ul{list-style:none}
+body{height:100%; font:12px;}
+#main_demo{width:200px; background:grey;min-height:800px;height:100%;-moz-border-radius:55px;-khtml-border-radius: 12px;-webkit-border-radius: 12px; border-radius:px;}
+.ad{ text-align:center; margin-top:25px;}
+.clear{ clear:both;}
+.logo{width: 200px; height: 100px; background: blanchedalmond;-khtml-border-radius: 12px;-webkit-border-radius: 12px;margin-bottom: -15px;}
+.logo img{height: 100px; width: 100px; margin-left: 48px;}

@@ -1,0 +1,59 @@
+@charset "utf-8";
+	#add{width:100%;float:left;height:100%;background:#fff;}
+	.addnav{width:100%;height:50px;background:#08ccdd;line-height:50px;color:#fff;}
+	.addnav span{float:left;padding-left:20px;display:block;font-size:16px;line-height:50px;color:#fff;}
+	.addet{width:100px;height:30px;border:1px solid #ccc;display:block;border-radius:5px;float:left;line-height:30px;margin-left:180px;text-align:center;margin-top:20px;background:#fff;font-size:14px;}
+	.adreset{width:100px;height:30px;border:1px solid #ccc;display:block;border-radius:5px;float:left;line-height:30px;margin-left:20px;text-align:center;margin-top:20px;background:#fff;font-size:14px;}
+	.addtb{width:882px;margin: 30px auto 0;}
+	.addnav ul li a{
+	 	display:inline-block;
+	 	height: 28px; 
+		border: 1px solid #ccc; 
+		border-radius: 5px; 
+		background: #fff;
+		text-align: center; 
+		line-height: 28px; 
+		padding: 0 20px; 
+		margin-top: 10px; 
+		margin-right: 20px; 
+		font-size: 14px;
+	 }
+	.addtb tr{width:100px;height:50px;}
+	.addtb td{font-size:14px;}
+	.addtb td.label{
+		text-align:right;
+		padding-right: 20px;
+	}
+	.addtb td font{
+		color:red;
+		font-size:14px;
+		font-weight: bold;
+	}
+	.addtb input,
+	.addtb select,
+	.addtb textarea{
+		display: inline-block;
+   	    width: 50%;
+		height: 30px;
+	    margin-right: 5px;
+	    font-size: 14px;
+	    border: 1px #dcdcdc solid;
+	    padding-left: 10px;
+	}
+	.addtb select{
+   	    width: 54%;
+	}
+	.addtb textarea{
+		height:150px;
+	}
+	.addtb a{
+	/* border:1px solid #ccc;border-radius:5px;height:20px;font-size:14px;line-height:20px;padding:5px;display:block;text-align:center; */
+	}
+	.btnTr td input[type="reset"]{
+		width:100px;
+		border:0;
+		padding-left: 0;
+	}
+	.btnTr td .btnG{
+		margin-right:20px;
+	}
